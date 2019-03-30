@@ -1,0 +1,53 @@
+{
+  "name": "@kibibit/announce-it",
+  "version": "0.0.0-development",
+  "description": "Announcing your Releases",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "build": "",
+    "semantic-release": "semantic-release"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kibibit/announce-it.git"
+  },
+  "author": "ZimGil <ZimGil@kibibit.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Kibibit/announce-it/issues"
+  },
+  "homepage": "https://github.com/Kibibit/announce-it#readme",
+  "release": {
+    "branches": [
+      "master",
+      {
+        "name": "next",
+        "prerelease": true
+      }
+    ],
+    "plugins": [
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github",
+      "@semantic-release/npm",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "package.json"
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
+    ]
+  },
+  "devDependencies": {
+    "@semantic-release/commit-analyzer": "^6.1.0",
+    "@semantic-release/git": "^7.1.0-beta.3",
+    "@semantic-release/github": "^5.2.10",
+    "@semantic-release/npm": "^5.1.4",
+    "@semantic-release/release-notes-generator": "^7.1.4",
+    "semantic-release": "^15.13.3",
+    "semantic-release-cli": "^4.1.1"
+  }
+}
