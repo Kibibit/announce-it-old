@@ -1,3 +1,9 @@
+# Vestion locking disable
+package-lock.json
+
+# Dist files
+lib/
+
 # Logs
 logs
 *.log
