@@ -15,9 +15,10 @@ const client = new Twitter({
 });
 
 client
-  .get("account/verify_credentials")
+  .get('account/verify_credentials')
   .then(() => {
     console.log('account verified');
     return client.post('statuses/update', {status: tweet});
-  }).then(() => console.log('Tweeted:', tweet))
+  })
+  .then(() => console.log('Tweeted:', tweet))
   .catch(console.error);
