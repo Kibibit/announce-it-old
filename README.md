@@ -41,12 +41,27 @@ We also recommend adding a dedicated script in your `package.json` file:
 ```
 
 ## How to use
+Intended to run after a new release in your continues integration
 
-***tbd***
+### Twitter Setup
+You have to have a [Twitter Developer's Account](https://developer.twitter.com/).
 
-<!-- TALK ABOUT ENV VARIABLES FOR SETUP -->
-<!-- TALK ABOUT WHERE TO CONFIGURE THE TEMPLATE AND
-    THE FACT IT'S A LODASH TEMPLATE + WHAT VARIABLES ARE SUPPORTED -->
+Create an App and find it's `Keys and tokens` (under Details)
+Create a `.env` file like the [example](./.env.example) with you App's info
+
+**NOTE:** After regenerating your codes you will need to edit them in your `.env` file.
+Keep your tokens secure!
+
+### Using Templates
+Inside your `package.json` file, add an `announcements` object with `tweet` property.
+
+You can then create your own tweet message that will be posted to twitter.
+You can use these variables:
+  * Package name: `<%= package %>`
+  * Version number: `<%= version %>`
+  * Package description: `<%= description %>`
+  * Package author: `<%= author %>`
+  * Homepage link: `<%= homepage%>`
 
 ## Contributing
 
