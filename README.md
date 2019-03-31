@@ -47,15 +47,18 @@ Intended to run after a new release in your continues integration
 You have to have a [Twitter Developer's Account](https://developer.twitter.com/).
 
 Create an App and find it's `Keys and tokens` (under Details)
+
 Create a `.env` file like the [example](./.env.example) with you App's info
 
 **NOTE:** After regenerating your codes you will need to edit them in your `.env` file.
-Keep your tokens secure!
+
+***Keep your tokens secure!***
 
 ### Using Templates
 Inside your `package.json` file, add an `announcements` object with `tweet` property.
 
 You can then create your own tweet message that will be posted to twitter.
+
 You can use these variables:
   * Package name: `<%= package %>`
   * Version number: `<%= version %>`
