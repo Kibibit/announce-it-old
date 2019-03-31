@@ -28,6 +28,9 @@
     "url": "https://github.com/Kibibit/announce-it/issues"
   },
   "homepage": "https://github.com/Kibibit/announce-it#readme",
+  "announcements": {
+    "tweet": "Version <%= version %> of <%= package %> is live! check it out <%=homepage %>"
+  },
   "release": {
     "branches": [
       "master",
@@ -68,7 +71,8 @@
   "dependencies": {
     "dotenv": "^7.0.0",
     "find-root": "^1.1.0",
-    "twitter-lite": "^0.9.4",
-    "fs-extra": "^7.0.1"
+    "fs-extra": "^7.0.1",
+    "lodash": "^4.17.11",
+    "twitter-lite": "^0.9.4"
   }
 }
