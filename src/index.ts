@@ -3,11 +3,10 @@ import Twitter from 'twitter-lite';
 import fs from 'fs-extra';
 import findRoot from 'find-root';
 import dotenv from 'dotenv';
+import { template } from 'lodash';
 
 dotenv.config();
 const root = findRoot(process.cwd());
-
-
 
 const client = new Twitter({
   subdomain: "api",
@@ -20,9 +19,7 @@ const client = new Twitter({
 client
   .get('account/verify_credentials')
     .then(() => fs.readJson(`${root}/package.json`, 'utf8'))
-    .then((packageData) => {
-      return `Version ${packageData.version} of ${packageData.name} is out!`;
-    })
+    .then((packageData) => generateTweet(packageData))
     .then((tweet) => {
       client.post('statuses/update', {status: tweet})
       return tweet;
@@ -30,3 +27,14 @@ client
     .then((tweet) => console.log('Tweeted:', tweet))
     .catch(console.error);
     
+function generateTweet(packageData) {
+  const tweetTemplate = template(packageData.announcements.tweet);
+
+  return tweetTemplate({
+    package: packageData.name,
+    version: packageData.version,
+    description: packageData.description,
+    author: packageData.author,
+    homepage: packageData.homepage
+  });
+}
