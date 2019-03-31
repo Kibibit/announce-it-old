@@ -41,12 +41,37 @@ We also recommend adding a dedicated script in your `package.json` file:
 ```
 
 ## How to use
+Intended to run after a new release in your continues integration
 
-***tbd***
+### Twitter Setup
+You have to create a [Developer Account on Twitter](https://developer.twitter.com/).
 
-<!-- TALK ABOUT ENV VARIABLES FOR SETUP -->
-<!-- TALK ABOUT WHERE TO CONFIGURE THE TEMPLATE AND
-    THE FACT IT'S A LODASH TEMPLATE + WHAT VARIABLES ARE SUPPORTED -->
+* Create an App
+* From your apps list go to your app Details
+* Select the `Keys and tokens` tab
+* Use these Token as environment variables in this fashion:
+  * `CONSUMER_KEY` = API key
+  * `CONSUMER_SECRET` = API secret key
+  * `ACCESS_TOKEN_KEY` = Access token
+  * `ACCESS_TOKEN_SECRET` = Access token secret
+
+
+### Using Templates
+Inside your `package.json` file, add an `announcements` object with `tweet` property.
+
+You can then create your own tweet message template that will be posted to twitter.
+
+The tweet template is generated with [Lodash template](https://lodash.com/docs/4.17.11#template).
+
+You can use these variables:
+  * Package name: `<%= package %>`
+  * Version number: `<%= version %>`
+  * Package description: `<%= description %>`
+  * Package author: `<%= author %>`
+  * Homepage link: `<%= homepage%>`
+
+#### Example:
+`Version <%= version %> of <%= package %> is live! check it out <%=homepage %>`
 
 ## Contributing
 
