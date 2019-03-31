@@ -15,7 +15,18 @@
       "avatar_url": "https://avatars3.githubusercontent.com/u/39461857?v=4",
       "profile": "https://github.com/ZimGil",
       "contributions": [
+        "infra",
+        "design",
         "code"
+      ]
+    },
+    {
+      "login": "Thatkookooguy",
+      "name": "Neil Kalman",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/10427304?v=4",
+      "profile": "http://thatkookooguy.kibibit.io",
+      "contributions": [
+        "ideas"
       ]
     }
   ],
