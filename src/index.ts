@@ -19,7 +19,7 @@ const client = new Twitter({
 client
   .get('account/verify_credentials')
     .then(() => fs.readJson(`${root}/package.json`, 'utf8'))
-    .then((packageData) => getTweet(packageData))
+    .then((packageData) => generateTweet(packageData))
     .then((tweet) => {
       client.post('statuses/update', {status: tweet})
       return tweet;
@@ -27,7 +27,7 @@ client
     .then((tweet) => console.log('Tweeted:', tweet))
     .catch(console.error);
     
-function getTweet(packageData) {
+function generateTweet(packageData) {
   const tweetTemplate = template(packageData.announcements.tweet);
 
   return tweetTemplate({
