@@ -1,9 +1,12 @@
 #!/usr/bin/env node
 import Twitter from 'twitter-lite';
-//
-require('dotenv').config();
+import fs from 'fs-extra';
+import findRoot from 'find-root';
+import dotenv from 'dotenv';
 
-const tweet = 'Hi @kibibit_opensrc, Are you ready to announce-it?';
+dotenv.config();
+const root = findRoot(process.cwd());
+
 
 
 const client = new Twitter({
@@ -16,9 +19,14 @@ const client = new Twitter({
 
 client
   .get('account/verify_credentials')
-  .then(() => {
-    console.log('account verified');
-    return client.post('statuses/update', {status: tweet});
-  })
-  .then(() => console.log('Tweeted:', tweet))
-  .catch(console.error);
+    .then(() => fs.readJson(`${root}/package.json`, 'utf8'))
+    .then((packageData) => {
+      return `Version ${packageData.version} of ${packageData.name} is out!`;
+    })
+    .then((tweet) => {
+      client.post('statuses/update', {status: tweet})
+      return tweet;
+    })
+    .then((tweet) => console.log('Tweeted:', tweet))
+    .catch(console.error);
+    

@@ -67,6 +67,8 @@
   },
   "dependencies": {
     "dotenv": "^7.0.0",
-    "twitter-lite": "^0.9.4"
+    "find-root": "^1.1.0",
+    "twitter-lite": "^0.9.4",
+    "fs-extra": "^7.0.1"
   }
 }
