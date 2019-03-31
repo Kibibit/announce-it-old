@@ -1,6 +1,6 @@
 {
   "name": "@kibibit/announce-it",
-  "version": "1.0.0-next.1",
+  "version": "1.0.0-next.2",
   "description": "Announcing your Releases",
   "types": "lib/index.d.ts",
   "main": "lib/index.js",
