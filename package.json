@@ -66,6 +66,7 @@
     "typescript": "^3.4.1"
   },
   "dependencies": {
-    "dotenv": "^7.0.0"
+    "dotenv": "^7.0.0",
+    "twitter-lite": "^0.9.4"
   }
 }
