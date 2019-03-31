@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/Kibibit/announce-it" target="blank"><img src="//cdn.onlinewebfonts.com/svg/img_1553.png" width="150" ></a>
+  <a href="https://github.com/Kibibit/announce-it" target="blank"><img src="http://kibibit.io/kibibit-assets/announce-it.svg" width="150" ></a>
   <h2 align="center">
     @kibibit/announce-it
   </h2>
@@ -61,6 +61,16 @@ Thanks goes to our contributors! ([emoji key](https://allcontributors.org/docs/e
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
 <table><tr><td align="center"><a href="https://github.com/ZimGil"><img src="https://avatars3.githubusercontent.com/u/39461857?v=4" width="100px;" alt="Gil Tichon"/><br /><sub><b>Gil Tichon</b></sub></a><br /><a href="#infra-ZimGil" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#design-ZimGil" title="Design">🎨</a> <a href="https://github.com/kibibit/announce-it/commits?author=ZimGil" title="Code">💻</a></td><td align="center"><a href="http://thatkookooguy.kibibit.io"><img src="https://avatars3.githubusercontent.com/u/10427304?v=4" width="100px;" alt="Neil Kalman"/><br /><sub><b>Neil Kalman</b></sub></a><br /><a href="#infra-Thatkookooguy" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#ideas-Thatkookooguy" title="Ideas, Planning, & Feedback">🤔</a></td></tr></table>
+
+
+<div>
+  Library logo is made by
+  <a href="https://www.freepik.com/" title="Freepik">Freepik</a>
+  from
+  <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+  and licensed by
+  <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+</div>
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
