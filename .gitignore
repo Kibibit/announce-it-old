@@ -1,3 +1,12 @@
+# Version locking disable
+package-lock.json
+
+# Dist files
+lib/
+
+# Environment variables
+.env 
+
 # Logs
 logs
 *.log

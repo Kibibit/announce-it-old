@@ -1,0 +1,35 @@
+{
+  "projectName": "announce-it",
+  "projectOwner": "kibibit",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "contributors": [
+    {
+      "login": "ZimGil",
+      "name": "Gil Tichon",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/39461857?v=4",
+      "profile": "https://github.com/ZimGil",
+      "contributions": [
+        "infra",
+        "code",
+        "projectManagement"
+      ]
+    },
+    {
+      "login": "Thatkookooguy",
+      "name": "Neil Kalman",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/10427304?v=4",
+      "profile": "http://thatkookooguy.kibibit.io",
+      "contributions": [
+        "infra",
+        "ideas"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}

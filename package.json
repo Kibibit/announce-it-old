@@ -1,0 +1,78 @@
+{
+  "name": "@kibibit/announce-it",
+  "version": "1.0.0-next.4",
+  "description": "Announcing your Releases",
+  "types": "lib/index.d.ts",
+  "main": "lib/index.js",
+  "files": [
+    "/lib"
+  ],
+  "bin": {
+    "announce-it": "lib/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "build": "tsc",
+    "start": "npm run build && node ./lib/index",
+    "semantic-release": "semantic-release",
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kibibit/announce-it.git"
+  },
+  "author": "ZimGil <ZimGil@kibibit.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Kibibit/announce-it/issues"
+  },
+  "homepage": "https://github.com/Kibibit/announce-it#readme",
+  "announcements": {
+    "tweet": "Version <%= version %> of <%= package %> is live! check it out <%=homepage %>"
+  },
+  "release": {
+    "branches": [
+      "master",
+      {
+        "name": "next",
+        "prerelease": true
+      }
+    ],
+    "plugins": [
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github",
+      "@semantic-release/npm",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "package.json"
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
+    ]
+  },
+  "devDependencies": {
+    "@semantic-release/commit-analyzer": "^6.1.0",
+    "@semantic-release/git": "^7.1.0-beta.3",
+    "@semantic-release/github": "^5.2.10",
+    "@semantic-release/npm": "^5.1.4",
+    "@semantic-release/release-notes-generator": "^7.1.4",
+    "all-contributors-cli": "^6.2.0",
+    "coveralls": "^3.0.3",
+    "npm-check": "^5.9.0",
+    "semantic-release": "^16.0.0-beta.18",
+    "semantic-release-cli": "^4.1.1",
+    "ts-node": "^8.0.3",
+    "typescript": "^3.4.1"
+  },
+  "dependencies": {
+    "dotenv": "^7.0.0",
+    "find-root": "^1.1.0",
+    "fs-extra": "^7.0.1",
+    "lodash": "^4.17.11",
+    "twitter-lite": "^0.9.4"
+  }
+}
