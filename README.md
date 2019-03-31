@@ -59,7 +59,9 @@ You have to create a [Developer Account on Twitter](https://developer.twitter.co
 ### Using Templates
 Inside your `package.json` file, add an `announcements` object with `tweet` property.
 
-You can then create your own tweet message template (using [`_.template`](https://lodash.com/docs/4.17.11#template)) that will be posted to twitter.
+You can then create your own tweet message template that will be posted to twitter.
+
+The tweet template is generated with [Lodash template](https://lodash.com/docs/4.17.11#template).
 
 You can use these variables:
   * Package name: `<%= package %>`
