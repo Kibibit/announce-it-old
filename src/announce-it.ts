@@ -48,7 +48,8 @@ export class KbAnnounceIt {
       version: packageDetails.version,
       description: packageDetails.description,
       author: packageDetails.author,
-      homepage: packageDetails.homepage
+      homepage: packageDetails.homepage,
+      npmpage: `https://www.npmjs.com/package/${ packageDetails.name }/v/${ packageDetails.version }`
     });
   }
 }
