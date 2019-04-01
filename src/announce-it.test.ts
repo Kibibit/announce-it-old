@@ -99,7 +99,7 @@ describe('kbAnnounceIt.announceRelease', () => {
   });
 
   it('should throw error on missing package details input', () => {
-    // TODO: TEST IMPLEMENTATION
+    // TODO: TEST: should throw error on missing package details input
   });
 
   it('should throw error when twitter get credentials throws an error', async () => {
@@ -110,16 +110,16 @@ describe('kbAnnounceIt.announceRelease', () => {
     try {
       await announceIt.announceRelease(packageDetails);
     } catch (e) {
-      // TODO: need to wrap this in OUR error
+      // TODO: FEATURE: create a basic KbError class
       expect(e).toMatch('Twitter Get Error');
     }
   });
 
   it('should throw error when twitter post tweet throws an error', async () => {
-    // TODO: TEST IMPLEMENTATION
+    // TODO: TEST: should throw error when twitter post tweet throws an error
   });
 
   it('should throw error when using missing variables in template', async () => {
-    // TODO: TEST IMPLEMENTATION
+    // TODO: TEST: should throw error when using missing variables in template
   });
 });
