@@ -1,0 +1,17 @@
+{
+  "name": "as-a-node-module",
+  "version": "1.0.0",
+  "description": "this is an example for using announce it as a node module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "k1b1b0t",
+  "license": "ISC",
+  "announcements": {
+    "tweet": "Version <%= version %> of <%= package %> is live! check it out <%=homepage %>"
+  },
+  "dependencies": {
+    "@kibibit/announce-it": "file:../.."
+  }
+}
