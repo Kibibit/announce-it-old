@@ -23,7 +23,7 @@ export function readPackageDetails(root: string): Promise<PackageDetails> {
         throw new Error('no tweet template found. please see the readme for more details');
       }
 
-      // here, we KNOW the package has a the announcement template string
+      // here, we KNOW the package has the announcement template string
       return packageDetails as PackageDetails;
     });
 }
