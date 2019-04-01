@@ -20,6 +20,7 @@ jobs:
       script:
         - npm run build
         - npm run test
+        - npm run coveralls
     - stage: release
       node_js: lts/*
       script:
