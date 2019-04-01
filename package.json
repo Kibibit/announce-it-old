@@ -8,12 +8,15 @@
     "/lib"
   ],
   "bin": {
-    "announce-it": "lib/index.js"
+    "announce-it": "lib/announce-it-cli.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0",
+    "test": "jest --coverage",
+    "test:watch": "jest --watchAll",
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
     "build": "tsc",
-    "start": "npm run build && node ./lib/index",
+    "start": "node ./lib/announce-it-cli",
+    "start:dev": "ts-node ./src/announce-it-cli.ts",
     "semantic-release": "semantic-release",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate"
