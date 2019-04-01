@@ -1,9 +1,9 @@
-import { template, get } from 'lodash';
+import { get, template } from 'lodash';
 import Twitter from 'twitter-lite';
 
-import { PackageDetails } from './read-package-details';
+import { IPackageDetails } from './read-package-details';
 
-export interface KbAnnounceItOptions {
+export interface IKbAnnounceItOptions {
   consumerKey: string;
   consumerSecret: string;
   accessTokenKey: string;
@@ -12,7 +12,7 @@ export interface KbAnnounceItOptions {
 
 export class KbAnnounceIt {
   private client: any;
-  constructor(options: KbAnnounceItOptions) {
+  constructor(options: IKbAnnounceItOptions) {
 
     if (!get(options, 'consumerKey') ||
       !get(options, 'consumerSecret') ||
@@ -31,7 +31,7 @@ export class KbAnnounceIt {
     });
   }
 
-  announceRelease(packageDetails: PackageDetails): Promise<any> {
+  announceRelease(packageDetails: IPackageDetails): Promise<any> {
     const tweet = this.generateTweet(packageDetails);
 
     return this.client
@@ -40,7 +40,7 @@ export class KbAnnounceIt {
       .then(() => console.log('Tweeted successfully:', tweet));
   }
 
-  generateTweet(packageDetails: PackageDetails): string {
+  generateTweet(packageDetails: IPackageDetails): string {
     const tweetTemplate = template(packageDetails.announcements.tweet);
 
     return tweetTemplate({

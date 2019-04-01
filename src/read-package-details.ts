@@ -1,7 +1,7 @@
 import fs from 'fs-extra';
 import { get, isString } from 'lodash';
 
-export interface PackageDetails {
+export interface IPackageDetails {
   name: string;
   version: string;
   description: string;
@@ -13,17 +13,17 @@ export interface PackageDetails {
   };
   announcements: {
     tweet: string;
-  }
+  };
 }
 
-export function readPackageDetails(root: string): Promise<PackageDetails> {
+export function readPackageDetails(root: string): Promise<IPackageDetails> {
   return fs.readJson(`${ root }/package.json`)
-    .then((packageDetails: Partial<PackageDetails>) => {
+    .then((packageDetails: Partial<IPackageDetails>) => {
       if (!isString(get(packageDetails, 'announcements.tweet'))) {
         throw new Error('no tweet template found. please see the readme for more details');
       }
 
       // here, we KNOW the package has a the announcement template string
-      return packageDetails as PackageDetails;
+      return packageDetails as IPackageDetails;
     });
 }

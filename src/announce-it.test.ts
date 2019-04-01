@@ -1,5 +1,5 @@
 import { KbAnnounceIt } from './announce-it';
-import { PackageDetails } from './read-package-details';
+import { IPackageDetails } from './read-package-details';
 
 const TwitterMocks = () => {
   const defaultMock = (...args: any) => Promise.resolve();
@@ -16,7 +16,7 @@ const TwitterMocks = () => {
       getMock = userDefinedMocks.get || getMock;
       postMock = userDefinedMocks.post || postMock;
     }
-  }
+  };
 };
 
 const twitterMocks = TwitterMocks();
@@ -72,7 +72,7 @@ describe('KbAnnounceIt', () => {
 });
 
 describe('kbAnnounceIt.announceRelease', () => {
-  const packageDetails: PackageDetails = {
+  const packageDetails: IPackageDetails = {
     name: 'test-repo',
     description: 'test-description',
     author: 'test-author',

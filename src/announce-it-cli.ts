@@ -8,6 +8,7 @@ import { KbAnnounceIt } from './announce-it';
 import { readPackageDetails } from './read-package-details';
 
 // add console colors
+// tslint:disable-next-line
 manakin.global;
 
 const env = process.env;

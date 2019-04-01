@@ -19,7 +19,8 @@
     "start:dev": "ts-node ./src/announce-it-cli.ts",
     "semantic-release": "semantic-release",
     "contributors:add": "all-contributors add",
-    "contributors:generate": "all-contributors generate"
+    "contributors:generate": "all-contributors generate",
+    "lint": "tslint -c tslint.json src/**/*.ts"
   },
   "repository": {
     "type": "git",
@@ -72,10 +73,11 @@
     "coveralls": "^3.0.3",
     "jest": "^24.5.0",
     "npm-check": "^5.9.0",
-    "semantic-release-cli": "^4.1.1",
     "semantic-release": "^16.0.0-beta.18",
+    "semantic-release-cli": "^4.1.1",
     "ts-jest": "^24.0.1",
     "ts-node": "^8.0.3",
+    "tslint": "^5.14.0",
     "typescript": "^3.4.1"
   },
   "dependencies": {
