@@ -14,5 +14,5 @@ const tweet: string = announceIt.generateTweet(myPackage);
 
 console.log('going to publish this tweet!', tweet);
 
-// publish tweet to tweeter
+// publish tweet to twitter
 announceIt.announceRelease(myPackage);
