@@ -30,16 +30,6 @@ Install this package as a dev dependency:
 npm install --save-dev @kibibit/announce-it
 ```
 
-We also recommend adding a dedicated script in your `package.json` file:
-```js
-// ...
-"scripts": {
-  // ...
-  "announce": "announce-it"
-}
-// ...
-```
-
 ## How to use
 Intended to run after a new release in your continues integration
 
@@ -49,17 +39,81 @@ You have to create a [Developer Account on Twitter](https://developer.twitter.co
 * Create an App
 * From your apps list go to your app Details
 * Select the `Keys and tokens` tab
-* Use these Token as environment variables in this fashion:
+* You'll need all 4 variables available in that page:
+  * API key
+  * API secret key
+  * Access token
+  * Access token secret
+
+
+### As a command line tool
+- You can add a dedicated script in your `package.json` file:
+  ```js
+  // ...
+  "scripts": {
+    // ...
+    "announce": "announce-it"
+  }
+  // ...
+  ```
+- If installed as a project dependency, you can run with npx:
+  ```bash
+  # should be ran inside your project
+  # npx
+  npx announce-it
+
+  # directly 
+  ./node_modules/.bin/announce-it
+  ```
+- If installed globally, you can run it from within any node package with
+the correct setup
+
+### As a node module
+
+```typescript
+import { KbAnnounceIt, PackageDetails } from '@kibibit/announce-it';
+
+const announceIt = new KbAnnounceIt({
+  accessTokenKey: 'TWITTER_ACCESS_KEY',
+  accessTokenSecret: 'TWITTER_ACCESS_SECRET',
+  consumerKey: 'TWITTER_CONSUMER_KEY',
+  consumerSecret: 'TWITTER_CONSUMER_SECRET'
+});
+
+const myPackage: PackageDetails = require('./package');
+
+// get generated tweet
+const tweet: string = announceIt.generateTweet(myPackage);
+
+console.log('going to tweet: ', tweet);
+
+// publish tweet to twitter
+announceIt.announceRelease(myPackage);
+
+```
+
+  * Use these Token as environment variables in this fashion:
   * `CONSUMER_KEY` = API key
   * `CONSUMER_SECRET` = API secret key
   * `ACCESS_TOKEN_KEY` = Access token
   * `ACCESS_TOKEN_SECRET` = Access token secret
 
 
-### Using Templates
+### Defining your Templates
 Inside your `package.json` file, add an `announcements` object with `tweet` property.
 
 You can then create your own tweet message template that will be posted to twitter.
+
+```javascript
+{
+  "name": "my-package",
+  "version": "2.4.3",
+  // ...
+  "announcements": {
+    "tweet": "Version <%= version %> of <%= package %> is live! <%= npmpage %>"
+  },
+}
+```
 
 The tweet template is generated with [Lodash template](https://lodash.com/docs/4.17.11#template).
 
@@ -68,10 +122,8 @@ You can use these variables:
   * Version number: `<%= version %>`
   * Package description: `<%= description %>`
   * Package author: `<%= author %>`
-  * Homepage link: `<%= homepage%>`
-
-#### Example:
-`Version <%= version %> of <%= package %> is live! check it out <%=homepage %>`
+  * Homepage link: `<%= homepage %>`
+  * Package page on npm: `<%= npmpage %>`
 
 ## Contributing
 
