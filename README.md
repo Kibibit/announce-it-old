@@ -25,6 +25,9 @@
 <!-- GENERAL DESCRIPTION IF NEEDED -->
 
 ## How to install
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/Kibibit/announce-it.svg)](https://greenkeeper.io/)
+
 Install this package as a dev dependency:
 ```shell
 npm install --save-dev @kibibit/announce-it
