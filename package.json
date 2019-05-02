@@ -82,7 +82,7 @@
     "typescript": "^3.4.1"
   },
   "dependencies": {
-    "dotenv": "^7.0.0",
+    "dotenv": "^8.0.0",
     "find-root": "^1.1.0",
     "fs-extra": "^7.0.1",
     "lodash": "^4.17.11",
