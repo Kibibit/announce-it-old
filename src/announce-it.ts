@@ -43,13 +43,20 @@ export class KbAnnounceIt {
   generateTweet(packageDetails: IPackageDetails): string {
     const tweetTemplate = template(packageDetails.announcements.tweet);
 
-    return tweetTemplate({
-      package: packageDetails.name,
-      version: packageDetails.version,
-      description: packageDetails.description,
-      author: packageDetails.author,
-      homepage: packageDetails.homepage,
-      npmpage: `https://www.npmjs.com/package/${ packageDetails.name }/v/${ packageDetails.version }`
-    });
+    let tweet: string;
+    try {
+      tweet = tweetTemplate({
+        package: packageDetails.name,
+        version: packageDetails.version,
+        description: packageDetails.description,
+        author: packageDetails.author,
+        homepage: packageDetails.homepage,
+        npmpage: `https://www.npmjs.com/package/${ packageDetails.name }/v/${ packageDetails.version }`
+      });
+    } catch (e) {
+      throw new Error('Using missing variables in tweet template');
+    }
+
+    return tweet;
   }
 }
