@@ -120,6 +120,9 @@ describe('kbAnnounceIt.announceRelease', () => {
   });
 
   it('should throw error when using missing variables in template', async () => {
-    // TODO: TEST: should throw error when using missing variables in template
+    const testPackageDetails = packageDetails;
+    testPackageDetails.announcements.tweet = 'This should <%= blow %> an error';
+    expect(() => announceIt.generateTweet(packageDetails)).toThrow(Error);
+
   });
 });
