@@ -1,3 +1,4 @@
+import { assign } from 'lodash';
 import { KbAnnounceIt } from './announce-it';
 import { IPackageDetails } from './read-package-details';
 
@@ -99,7 +100,10 @@ describe('kbAnnounceIt.announceRelease', () => {
   });
 
   it('should throw error on missing package details input', () => {
-    // TODO: TEST: should throw error on missing package details input
+    const testPackageDetails: any = assign({}, packageDetails);
+    testPackageDetails.name = null;
+
+    expect(() => announceIt.announceRelease(testPackageDetails)).toThrow(Error);
   });
 
   it('should throw error when twitter get credentials throws an error', async () => {
