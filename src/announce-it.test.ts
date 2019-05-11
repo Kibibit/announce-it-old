@@ -120,7 +120,18 @@ describe('kbAnnounceIt.announceRelease', () => {
   });
 
   it('should throw error when twitter post tweet throws an error', async () => {
-    // TODO: TEST: should throw error when twitter post tweet throws an error
+    expect.assertions(1);
+
+    twitterMocks.reset({
+      post: (...args: any) => Promise.reject('Twitter Post Error'),
+      get: (...args: any) => Promise.resolve()
+     });
+
+    try {
+      await announceIt.announceRelease(packageDetails);
+    } catch (e) {
+      expect(e).toMatch('Twitter Post Error');
+    }
   });
 
   it('should throw error when using missing variables in template', async () => {
