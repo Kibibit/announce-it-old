@@ -32,18 +32,11 @@ export class KbAnnounceIt {
   }
 
   announceRelease(packageDetails: IPackageDetails): Promise<any> {
-    let levelRegex: RegExp;
-    switch (packageDetails.announcements.level) {
-      case 'release':
-        levelRegex = /^(\d+\.)+\d+$/;
-        break;
-      case 'every':
-      default:
-        levelRegex = /\S+/;
-        break;
-    }
-    if (!packageDetails.version.match(levelRegex)) {
-      return Promise.reject('Not an announcement level version');
+    if (
+      !packageDetails.announcements.includeUnstable &&
+      !packageDetails.version.match(/^(\d+\.)+\d+$/)
+      ) {
+        return Promise.reject('Not a stable release');
     }
 
     const tweet = this.generateTweet(packageDetails);
@@ -51,7 +44,8 @@ export class KbAnnounceIt {
     return this.client
       .get('account/verify_credentials')
       .then(() => this.client.post('statuses/update', { status: tweet }))
-      .then(() => console.log('Tweeted successfully:', tweet));
+      .then(() => console.log('Tweeted successfully:', tweet))
+      .then(() => tweet);
   }
 
   generateTweet(packageDetails: IPackageDetails): string {
