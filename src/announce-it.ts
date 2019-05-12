@@ -32,6 +32,10 @@ export class KbAnnounceIt {
   }
 
   announceRelease(packageDetails: IPackageDetails): Promise<any> {
+    if (!packageDetails.version.match(/^(\d+\.)+\d+$/)) {
+      return Promise.reject('Not a release version');
+    }
+
     const tweet = this.generateTweet(packageDetails);
 
     return this.client

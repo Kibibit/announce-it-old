@@ -82,7 +82,7 @@ describe('kbAnnounceIt.announceRelease', () => {
       type: 'test-repo-type',
       url: 'test-repo-url'
     },
-    version: 'test-version',
+    version: '0.0.0',
     announcements: {
       tweet: 'test-template'
     }
@@ -97,6 +97,23 @@ describe('kbAnnounceIt.announceRelease', () => {
       consumerKey: 'TEST',
       consumerSecret: 'TEST'
     });
+  });
+
+  it('should post a tweet when release version', () => {
+    const testPackageDetails: any = assign({}, packageDetails);
+    testPackageDetails.version = '1.0.0';
+    testPackageDetails.announcements.tweet = 'Hi';
+
+    // expect(() => announceIt.announceRelease(testPackageDetails)).resolves.toMatch('Hi');
+    expect(announceIt.announceRelease(testPackageDetails)).resolves.toMatch('Hi');
+  });
+
+  it('should throw an error when release version', () => {
+    const testPackageDetails: any = assign({}, packageDetails);
+    testPackageDetails.version = 'test-release';
+
+    // expect(() => announceIt.announceRelease(testPackageDetails)).resolves.toMatch('Hi');
+    expect(announceIt.announceRelease(testPackageDetails)).rejects.toMatch('Not a release version');
   });
 
   it('should throw error on missing package details input', () => {
