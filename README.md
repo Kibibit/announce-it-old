@@ -15,6 +15,9 @@
   <a href="https://coveralls.io/github/Kibibit/announce-itbranch=master">
   <img src="https://coveralls.io/repos/github/Kibibit/announce-it/badge.svg?branch=master">
   </a>
+  <a href="http://greenkeeper.io">
+    <img src="https://badges.greenkeeper.io/Kibibit/announce-it.svg">
+  </a>
   <a href="https://salt.bountysource.com/teams/kibibit"><img src="https://img.shields.io/endpoint.svg?url=https://monthly-salt.now.sh/kibibit&style=flat-square"></a>
 </p>
 <p align="center">
@@ -25,8 +28,6 @@
 <!-- GENERAL DESCRIPTION IF NEEDED -->
 
 ## How to install
-
-[![Greenkeeper badge](https://badges.greenkeeper.io/Kibibit/announce-it.svg)](https://greenkeeper.io/)
 
 Install this package as a dev dependency:
 ```shell
