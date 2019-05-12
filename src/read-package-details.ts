@@ -13,6 +13,7 @@ export interface IPackageDetails {
   };
   announcements: {
     tweet: string;
+    level: string;
   };
 }
 

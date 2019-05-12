@@ -32,8 +32,18 @@ export class KbAnnounceIt {
   }
 
   announceRelease(packageDetails: IPackageDetails): Promise<any> {
-    if (!packageDetails.version.match(/^(\d+\.)+\d+$/)) {
-      return Promise.reject('Not a release version');
+    let levelRegex: RegExp;
+    switch (packageDetails.announcements.level) {
+      case 'release':
+        levelRegex = /^(\d+\.)+\d+$/;
+        break;
+      case 'every':
+      default:
+        levelRegex = /\S+/;
+        break;
+    }
+    if (!packageDetails.version.match(levelRegex)) {
+      return Promise.reject('Not an announcement level version');
     }
 
     const tweet = this.generateTweet(packageDetails);

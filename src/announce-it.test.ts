@@ -82,9 +82,10 @@ describe('kbAnnounceIt.announceRelease', () => {
       type: 'test-repo-type',
       url: 'test-repo-url'
     },
-    version: '0.0.0',
+    version: 'test-release',
     announcements: {
-      tweet: 'test-template'
+      tweet: 'test-template',
+      level: 'test-level'
     }
   };
 
@@ -99,21 +100,16 @@ describe('kbAnnounceIt.announceRelease', () => {
     });
   });
 
-  it('should post a tweet when release version', () => {
-    const testPackageDetails: any = assign({}, packageDetails);
-    testPackageDetails.version = '1.0.0';
-    testPackageDetails.announcements.tweet = 'Hi';
-
-    // expect(() => announceIt.announceRelease(testPackageDetails)).resolves.toMatch('Hi');
-    expect(announceIt.announceRelease(testPackageDetails)).resolves.toMatch('Hi');
+  it('should post to twitter when no release level provided', () => {
+    // TODO - should post to twitter when no release leven provided
   });
 
-  it('should throw an error when release version', () => {
-    const testPackageDetails: any = assign({}, packageDetails);
-    testPackageDetails.version = 'test-release';
+  it('should post to twitter when version number match announcement release level', () => {
+    // TODO - should post to twitter when version number match announcement release level
+  });
 
-    // expect(() => announceIt.announceRelease(testPackageDetails)).resolves.toMatch('Hi');
-    expect(announceIt.announceRelease(testPackageDetails)).rejects.toMatch('Not a release version');
+  it('should throw an error if version number does not match announcement release level', () => {
+    // TODO - should throw an error if version number does not match announcement release level
   });
 
   it('should throw error on missing package details input', () => {
