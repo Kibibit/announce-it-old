@@ -44,8 +44,10 @@ export class KbAnnounceIt {
     return this.client
       .get('account/verify_credentials')
       .then(() => this.client.post('statuses/update', { status: tweet }))
-      .then(() => console.log('Tweeted successfully:', tweet))
-      .then(() => tweet);
+      .then(() => {
+        console.log('Tweeted successfully:', tweet);
+        return tweet;
+      });
   }
 
   generateTweet(packageDetails: IPackageDetails): string {
