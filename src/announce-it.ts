@@ -1,4 +1,4 @@
-import { get, template } from 'lodash';
+import { forEach, get, isNil, isObject, template } from 'lodash';
 import Twitter from 'twitter-lite';
 
 import { IPackageDetails } from './read-package-details';
@@ -32,24 +32,55 @@ export class KbAnnounceIt {
   }
 
   announceRelease(packageDetails: IPackageDetails): Promise<any> {
+    if (
+      !packageDetails.announcements.includeUnstable &&
+      !packageDetails.version.match(/^(\d+\.)+\d+$/)
+      ) {
+        return Promise.reject('Not a stable release');
+    }
+
     const tweet = this.generateTweet(packageDetails);
 
     return this.client
       .get('account/verify_credentials')
       .then(() => this.client.post('statuses/update', { status: tweet }))
-      .then(() => console.log('Tweeted successfully:', tweet));
+      .then(() => {
+        console.log('Tweeted successfully:', tweet);
+        return tweet;
+      });
   }
 
   generateTweet(packageDetails: IPackageDetails): string {
     const tweetTemplate = template(packageDetails.announcements.tweet);
+    this.ensureKeyAttributes(packageDetails);
+    let tweet: string;
+    try {
+      tweet = tweetTemplate({
+        package: packageDetails.name,
+        version: packageDetails.version,
+        description: packageDetails.description,
+        author: packageDetails.author,
+        homepage: packageDetails.homepage,
+        npmpage: `https://www.npmjs.com/package/${ packageDetails.name }/v/${ packageDetails.version }`
+      });
+    } catch (e) {
+      throw new Error('Using missing variables in tweet template');
+    }
 
-    return tweetTemplate({
-      package: packageDetails.name,
-      version: packageDetails.version,
-      description: packageDetails.description,
-      author: packageDetails.author,
-      homepage: packageDetails.homepage,
-      npmpage: `https://www.npmjs.com/package/${ packageDetails.name }/v/${ packageDetails.version }`
+    return tweet;
+  }
+
+  private ensureKeyAttributes(packageDetails: Partial<IPackageDetails>): void {
+    const requiredKeys = ['name', 'version', 'announcements.tweet'];
+
+    if (!isObject(packageDetails)) {
+      throw new Error('Expecting Object');
+    }
+
+    forEach(requiredKeys, (key) => {
+      if (isNil(get(packageDetails, key))) {
+        throw new Error(`The key ${key} is missing from given object`);
+      }
     });
   }
 }
