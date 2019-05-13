@@ -32,12 +32,22 @@ export class KbAnnounceIt {
   }
 
   announceRelease(packageDetails: IPackageDetails): Promise<any> {
+    if (
+      !packageDetails.announcements.includeUnstable &&
+      !packageDetails.version.match(/^(\d+\.)+\d+$/)
+      ) {
+        return Promise.reject('Not a stable release');
+    }
+
     const tweet = this.generateTweet(packageDetails);
 
     return this.client
       .get('account/verify_credentials')
       .then(() => this.client.post('statuses/update', { status: tweet }))
-      .then(() => console.log('Tweeted successfully:', tweet));
+      .then(() => {
+        console.log('Tweeted successfully:', tweet);
+        return tweet;
+      });
   }
 
   generateTweet(packageDetails: IPackageDetails): string {

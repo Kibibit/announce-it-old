@@ -1,4 +1,4 @@
-import { assign } from 'lodash';
+import { assign, cloneDeep } from 'lodash';
 import { KbAnnounceIt } from './announce-it';
 import { IPackageDetails } from './read-package-details';
 
@@ -82,7 +82,7 @@ describe('kbAnnounceIt.announceRelease', () => {
       type: 'test-repo-type',
       url: 'test-repo-url'
     },
-    version: 'test-version',
+    version: '0.0.0',
     announcements: {
       tweet: 'test-template'
     }
@@ -97,6 +97,28 @@ describe('kbAnnounceIt.announceRelease', () => {
       consumerKey: 'TEST',
       consumerSecret: 'TEST'
     });
+  });
+
+  it('should post to twitter when stable release', () => {
+    return announceIt.announceRelease(packageDetails)
+    .then((tweet) => expect(tweet).toMatch('test-template'));
+  });
+
+  it('should throw an error when unstable release and not mentioned in packageDetails', () => {
+    const testPackageDetails = cloneDeep(packageDetails);
+    testPackageDetails.version = '0.0.0-next.1';
+
+    return announceIt.announceRelease(testPackageDetails)
+      .catch((tweet) => expect(tweet).toMatch('Not a stable release'));
+  });
+
+  it('should post to twitter when unstable release and mentioned in packageDetails', () => {
+    const testPackageDetails = cloneDeep(packageDetails);
+    testPackageDetails.version = '0.0.0-next.1';
+    testPackageDetails.announcements.includeUnstable = true;
+
+    return announceIt.announceRelease(testPackageDetails)
+      .then((tweet) => expect(tweet).toMatch('test-template'));
   });
 
   it('should throw error on missing package details input', () => {
