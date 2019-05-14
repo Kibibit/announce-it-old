@@ -1,6 +1,7 @@
-import { IPackageDetails, readPackageDetails } from './read-package-details';
 import fs from 'fs-extra';
 import { assign } from 'lodash';
+
+import { IPackageDetails, readPackageDetails } from './read-package-details';
 
 const packageDetails: IPackageDetails = {
   name: 'package-name',
