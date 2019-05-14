@@ -67,7 +67,7 @@
     "@semantic-release/release-notes-generator": "^7.1.4",
     "@types/dotenv": "^6.1.1",
     "@types/find-root": "^1.1.1",
-    "@types/fs-extra": "^5.0.5",
+    "@types/fs-extra": "^7.0.0",
     "@types/jest": "^24.0.11",
     "@types/lodash": "^4.14.123",
     "all-contributors-cli": "^6.2.0",
@@ -84,7 +84,7 @@
   "dependencies": {
     "dotenv": "^8.0.0",
     "find-root": "^1.1.0",
-    "fs-extra": "^7.0.1",
+    "fs-extra": "^8.0.1",
     "lodash": "^4.17.11",
     "manakin": "^0.5.2",
     "twitter-lite": "^0.9.4"
