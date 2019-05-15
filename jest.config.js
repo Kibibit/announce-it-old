@@ -11,6 +11,6 @@ module.exports = {
   watchPathIgnorePatterns: [
     ".*test-results.*\\.js"
   ],
-  reporters: ["default", "jest-allure", "jest-stare"],
+  reporters: ["default", "jest-stare"],
   testResultsProcessor: "./node_modules/jest-stare"
 };
