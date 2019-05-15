@@ -73,6 +73,7 @@
     "all-contributors-cli": "^6.2.0",
     "coveralls": "^3.0.3",
     "jest": "^24.5.0",
+    "jest-stare": "^1.13.2",
     "npm-check": "^5.9.0",
     "semantic-release": "^16.0.0-beta.18",
     "semantic-release-cli": "^5.0.0",
@@ -88,5 +89,9 @@
     "lodash": "^4.17.11",
     "manakin": "^0.5.2",
     "twitter-lite": "^0.9.4"
+  },
+  "jest-stare": {
+    "resultDir": "test-results/",
+    "coverageLink": "../coverage/index.html"
   }
 }

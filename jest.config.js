@@ -7,5 +7,10 @@ module.exports = {
     "src/**/*.ts",
     "!src/**/index.ts",
     "!src/announce-it-cli.ts"
-  ]
+  ],
+  watchPathIgnorePatterns: [
+    ".*test-results.*\\.js"
+  ],
+  reporters: ["default", "jest-allure", "jest-stare"],
+  testResultsProcessor: "./node_modules/jest-stare"
 };
