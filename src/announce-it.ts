@@ -31,12 +31,12 @@ export class KbAnnounceIt {
     });
   }
 
-  announceRelease(packageDetails: IPackageDetails): Promise<any> {
+  announceRelease(packageDetails: IPackageDetails): Promise<string> {
     if (
       !packageDetails.announcements.includeUnstable &&
       !packageDetails.version.match(/^(\d+\.)+\d+$/)
-      ) {
-        return Promise.reject('Not a stable release');
+    ) {
+      return Promise.reject(new Error('Not a stable release'));
     }
 
     const tweet = this.generateTweet(packageDetails);
@@ -44,15 +44,13 @@ export class KbAnnounceIt {
     return this.client
       .get('account/verify_credentials')
       .then(() => this.client.post('statuses/update', { status: tweet }))
-      .then(() => {
-        console.log('Tweeted successfully:', tweet);
-        return tweet;
-      });
+      .then(() => tweet);
   }
 
   generateTweet(packageDetails: IPackageDetails): string {
-    const tweetTemplate = template(packageDetails.announcements.tweet);
     this.ensureKeyAttributes(packageDetails);
+
+    const tweetTemplate = template(packageDetails.announcements.tweet);
     let tweet: string;
     try {
       tweet = tweetTemplate({
@@ -71,7 +69,7 @@ export class KbAnnounceIt {
   }
 
   private ensureKeyAttributes(packageDetails: Partial<IPackageDetails>): void {
-    const requiredKeys = ['name', 'version', 'announcements.tweet'];
+    const requiredKeys = [ 'name', 'version', 'announcements.tweet' ];
 
     if (!isObject(packageDetails)) {
       throw new Error('Expecting Object');
@@ -79,7 +77,7 @@ export class KbAnnounceIt {
 
     forEach(requiredKeys, (key) => {
       if (isNil(get(packageDetails, key))) {
-        throw new Error(`The key ${key} is missing from given object`);
+        throw new Error(`The key ${ key } is missing from given object`);
       }
     });
   }
