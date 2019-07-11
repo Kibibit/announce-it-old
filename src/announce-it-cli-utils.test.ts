@@ -33,8 +33,8 @@ const packageDetails: IPackageDetails = {
 describe('AnnounceItCli', () => {
   const announceItCli = new AnnounceItCli();
 
-  describe('areEnvVariablesDefined', () => {
-    it('should resolve if all required environment variables exists', () => {
+  describe('areVariablesDefined', () => {
+    it('should resolve if all required variables exists', () => {
       return expect(announceItCli.areVariablesDefined({
         CONSUMER_KEY: 'CONSUMER_KEY',
         CONSUMER_SECRET: 'CONSUMER_SECRET',
@@ -43,7 +43,7 @@ describe('AnnounceItCli', () => {
         branch: 'TEST'
       })).resolves.toMatchSnapshot();
     });
-    it('should reject if at least 1 required environment variable is missing', () => {
+    it('should reject if at least 1 required variable is missing', () => {
       return expect(announceItCli.areVariablesDefined({
         CONSUMER_KEY: 'CONSUMER_KEY',
         CONSUMER_SECRET: 'CONSUMER_SECRET',
