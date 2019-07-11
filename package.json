@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/Kibibit/announce-it#readme",
   "announcements": {
-    "tweet": "Version <%= version %> of <%= package %> is live! check it out <%=homepage %>"
+    "tweet": "We have an announcement!\n<%= package %> <%= version %> in now live!\n\nGo check it out: <%= npmpage %>"
   },
   "release": {
     "branches": [
@@ -56,11 +56,18 @@
           ],
           "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
         }
+      ],
+      [
+        "@semantic-release/exec",
+        {
+          "success": "npm run start -- --branch ${options.branch}"
+        }
       ]
     ]
   },
   "devDependencies": {
     "@semantic-release/commit-analyzer": "^6.1.0",
+    "@semantic-release/exec": "^3.3.5",
     "@semantic-release/git": "^7.1.0-beta.3",
     "@semantic-release/github": "^5.2.10",
     "@semantic-release/npm": "^5.1.4",
