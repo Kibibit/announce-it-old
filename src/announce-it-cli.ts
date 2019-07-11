@@ -14,8 +14,9 @@ nconf.argv()
 const announceItCli = new AnnounceItCli();
 
 const variables = nconf.get();
+const cwd = process.cwd();
 announceItCli.areVariablesDefined(variables)
-  .then(() => announceItCli.findRoot(process.cwd()))
+  .then(() => announceItCli.findRoot(cwd))
   .then((root) => announceItCli.runAnnounceItCli(root, variables))
   .catch((error: Error) => {
     console.error('ERROR: Something went wrong');
