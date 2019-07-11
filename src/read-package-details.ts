@@ -1,5 +1,6 @@
 import fs from 'fs-extra';
 import { get, isString } from 'lodash';
+import { IBranchObject } from './announce-it';
 
 export interface IPackageDetails {
   name: string;
@@ -13,7 +14,11 @@ export interface IPackageDetails {
   };
   announcements: {
     tweet: string;
+    includeUnstable?: boolean;
   };
+  release: {
+    branches: Array<string | IBranchObject>;
+  }
 }
 
 export function readPackageDetails(root: string): Promise<IPackageDetails> {

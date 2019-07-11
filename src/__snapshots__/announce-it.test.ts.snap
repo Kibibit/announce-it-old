@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`KbAnnounceIt should create instance when given correct parameters 1`] = `
+KbAnnounceIt {
+  "branchName": "TEST",
+  "client": Object {
+    "get": [Function],
+    "post": [Function],
+  },
+}
+`;
+
+exports[`KbAnnounceIt should throw error when missing options 1`] = `"ERROR: missing required options"`;
+
+exports[`KbAnnounceIt should throw error when missing options 2`] = `"ERROR: missing required options"`;
+
+exports[`KbAnnounceIt should throw error when missing options 3`] = `"ERROR: missing required options"`;
+
+exports[`KbAnnounceIt should throw error when missing options 4`] = `"ERROR: missing required options"`;
+
+exports[`KbAnnounceIt should throw error when missing options 5`] = `"ERROR: missing required options"`;
+
+exports[`kbAnnounceIt.announceRelease should post to twitter when stable release 1`] = `"test-template"`;
+
+exports[`kbAnnounceIt.announceRelease should post to twitter when unstable release and mentioned in packageDetails 1`] = `"test-template"`;
+
+exports[`kbAnnounceIt.announceRelease should post to twitter when unstable release and mentioned in packageDetails as stable 1`] = `"test-template"`;
+
+exports[`kbAnnounceIt.announceRelease should throw an error when unstable release and mentioned in packageDetails as unstable 1`] = `"Not a stable release"`;
+
+exports[`kbAnnounceIt.announceRelease should throw an error when unstable release and not mentioned in packageDetails 1`] = `"Not a stable release"`;
+
+exports[`kbAnnounceIt.announceRelease should throw error when twitter get credentials throws an error 1`] = `"Twitter Get Error"`;
+
+exports[`kbAnnounceIt.announceRelease should throw error when twitter post tweet throws an error 1`] = `"Twitter Post Error"`;
+
+exports[`kbAnnounceIt.generateTweet should throw error on missing package details input 1`] = `"The key name is missing from given object"`;
+
+exports[`kbAnnounceIt.generateTweet should throw error on non object input 1`] = `"Expecting Object"`;
+
+exports[`kbAnnounceIt.generateTweet should throw error when using missing variables in template 1`] = `"Using missing variables in tweet template"`;

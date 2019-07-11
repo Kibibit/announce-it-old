@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`readPackageDetails should return the package details 1`] = `
+Object {
+  "announcements": Object {
+    "tweet": "nice!",
+  },
+  "author": "test@test.com",
+  "description": "package description",
+  "homepage": "pizza.com",
+  "name": "package-name",
+  "release": Object {
+    "branches": Array [
+      "TEST",
+    ],
+  },
+  "repository": Object {
+    "type": "",
+    "url": "",
+  },
+  "version": "1.0.0",
+}
+`;
+
+exports[`readPackageDetails should throw error if missing tweet from package.json 1`] = `"no tweet template found. please see the readme for more details"`;
+
+exports[`readPackageDetails should throw error if reading package.json failed 1`] = `"failed reading json file"`;

@@ -15,6 +15,9 @@
   <a href="https://coveralls.io/github/Kibibit/announce-itbranch=master">
   <img src="https://coveralls.io/repos/github/Kibibit/announce-it/badge.svg?branch=master">
   </a>
+  <a href="http://greenkeeper.io">
+    <img src="https://badges.greenkeeper.io/Kibibit/announce-it.svg">
+  </a>
   <a href="https://salt.bountysource.com/teams/kibibit"><img src="https://img.shields.io/endpoint.svg?url=https://monthly-salt.now.sh/kibibit&style=flat-square"></a>
 </p>
 <p align="center">
@@ -25,6 +28,7 @@
 <!-- GENERAL DESCRIPTION IF NEEDED -->
 
 ## How to install
+
 Install this package as a dev dependency:
 ```shell
 npm install --save-dev @kibibit/announce-it
@@ -56,6 +60,20 @@ You have to create a [Developer Account on Twitter](https://developer.twitter.co
   }
   // ...
   ```
+- If executed with @semanic-release/exec:
+  ```js
+  // ...
+  "plugins": 
+    // ...
+    [
+      "@semantic-release/exec",
+      {
+        "success": "npm run announce -- --branch ${options.branch}"
+      }
+    ]
+    // ...
+  // ...
+  ```
 - If installed as a project dependency, you can run with npx:
   ```bash
   # should be ran inside your project
@@ -77,7 +95,8 @@ const announceIt = new KbAnnounceIt({
   accessTokenKey: 'TWITTER_ACCESS_KEY',
   accessTokenSecret: 'TWITTER_ACCESS_SECRET',
   consumerKey: 'TWITTER_CONSUMER_KEY',
-  consumerSecret: 'TWITTER_CONSUMER_SECRET'
+  consumerSecret: 'TWITTER_CONSUMER_SECRET',
+  branch: 'CURRENT_BRANCH'
 });
 
 const myPackage: PackageDetails = require('./package');
