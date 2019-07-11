@@ -66,7 +66,8 @@ describe('KbAnnounceIt', () => {
       accessTokenKey: 'TEST',
       accessTokenSecret: 'TEST',
       consumerKey: 'TEST',
-      consumerSecret: 'TEST'
+      consumerSecret: 'TEST',
+      branch: 'TEST'
     });
 
     expect(announceIt).toBeDefined();
@@ -87,6 +88,9 @@ describe('kbAnnounceIt.announceRelease', () => {
     version: '0.0.0',
     announcements: {
       tweet: 'test-template'
+    },
+    release: {
+      branches: [ 'TEST' ]
     }
   };
 
@@ -97,7 +101,8 @@ describe('kbAnnounceIt.announceRelease', () => {
       accessTokenKey: 'TEST',
       accessTokenSecret: 'TEST',
       consumerKey: 'TEST',
-      consumerSecret: 'TEST'
+      consumerSecret: 'TEST',
+      branch: 'TEST'
     });
   });
 
@@ -107,9 +112,51 @@ describe('kbAnnounceIt.announceRelease', () => {
 
   it('should throw an error when unstable release and not mentioned in packageDetails', () => {
     const testPackageDetails = cloneDeep(packageDetails);
-    testPackageDetails.version = '0.0.0-next.1';
+    announceIt = new KbAnnounceIt({
+      accessTokenKey: 'TEST',
+      accessTokenSecret: 'TEST',
+      consumerKey: 'TEST',
+      consumerSecret: 'TEST',
+      branch: 'unstable'
+    });
 
     return expect(announceIt.announceRelease(testPackageDetails)).rejects.toThrowErrorMatchingSnapshot();
+  });
+
+  it('should throw an error when unstable release and mentioned in packageDetails as unstable', () => {
+    const testPackageDetails = cloneDeep(packageDetails);
+    testPackageDetails.release.branches = [{
+      name: 'unstable',
+      prerelease: true
+    }];
+    announceIt = new KbAnnounceIt({
+      accessTokenKey: 'TEST',
+      accessTokenSecret: 'TEST',
+      consumerKey: 'TEST',
+      consumerSecret: 'TEST',
+      branch: 'unstable'
+    });
+
+
+    return expect(announceIt.announceRelease(testPackageDetails)).rejects.toThrowErrorMatchingSnapshot();
+  });
+
+  it('should post to twitter when unstable release and mentioned in packageDetails as stable', () => {
+    const testPackageDetails = cloneDeep(packageDetails);
+    testPackageDetails.release.branches = [{
+      name: 'unstable',
+      prerelease: false
+    }];
+    announceIt = new KbAnnounceIt({
+      accessTokenKey: 'TEST',
+      accessTokenSecret: 'TEST',
+      consumerKey: 'TEST',
+      consumerSecret: 'TEST',
+      branch: 'unstable'
+    });
+
+
+    return expect(announceIt.announceRelease(testPackageDetails)).resolves.toMatchSnapshot();
   });
 
   it('should post to twitter when unstable release and mentioned in packageDetails', () => {
@@ -154,6 +201,9 @@ describe('kbAnnounceIt.generateTweet', () => {
     version: '0.0.0',
     announcements: {
       tweet: 'test-template'
+    },
+    release: {
+      branches: [ 'TEST' ]
     }
   };
 
@@ -164,7 +214,8 @@ describe('kbAnnounceIt.generateTweet', () => {
       accessTokenKey: 'TEST',
       accessTokenSecret: 'TEST',
       consumerKey: 'TEST',
-      consumerSecret: 'TEST'
+      consumerSecret: 'TEST',
+      branch: 'TEST'
     });
   });
 

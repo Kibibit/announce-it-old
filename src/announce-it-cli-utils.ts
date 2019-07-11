@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import findRoot from 'find-root';
 import { every, isString } from 'lodash';
 
@@ -6,20 +5,23 @@ import { KbAnnounceIt } from './announce-it';
 import { readPackageDetails } from './read-package-details';
 
 export class AnnounceItCli {
-  areEnvVariablesDefined(env: NodeJS.ProcessEnv): Promise<void> {
-    const envVariables = [
+  areVariablesDefined(env: NodeJS.ProcessEnv): Promise<void> {
+    const variables = [
       'CONSUMER_KEY',
       'CONSUMER_SECRET',
       'ACCESS_TOKEN_KEY',
-      'ACCESS_TOKEN_SECRET'
+      'ACCESS_TOKEN_SECRET',
+      'branch'
     ];
 
-    const areEnvVariablesDefined = every(envVariables, (varName) => {
+    const areEnvVariablesDefined = every(variables, (varName) => {
       return isString(env[ varName ]);
     });
 
     if (!areEnvVariablesDefined) {
-      return Promise.reject(new Error(`These Environment variables are required: ${ envVariables.join(' ') }`));
+      return Promise.reject(
+        new Error(`These Variables are required: ${ variables.join(', ') }`)
+      );
     }
 
     return Promise.resolve();
@@ -45,7 +47,8 @@ export class AnnounceItCli {
           consumerKey: env.CONSUMER_KEY as string,
           consumerSecret: env.CONSUMER_SECRET as string,
           accessTokenKey: env.ACCESS_TOKEN_KEY as string,
-          accessTokenSecret: env.ACCESS_TOKEN_SECRET as string
+          accessTokenSecret: env.ACCESS_TOKEN_SECRET as string,
+          branch: env.branch as string
         });
 
         return announceIt.announceRelease(packageDetails);

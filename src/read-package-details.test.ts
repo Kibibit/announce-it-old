@@ -15,6 +15,9 @@ const packageDetails: IPackageDetails = {
   },
   announcements: {
     tweet: 'nice!'
+  },
+  release: {
+    branches: [ 'TEST' ]
   }
 };
 
