@@ -1,4 +1,4 @@
-import { forEach, get, isNil, isObject, template } from 'lodash';
+import { forEach, get, isNil, isObject, template, chain, isString } from 'lodash';
 import Twitter from 'twitter-lite';
 
 import { IPackageDetails } from './read-package-details';
@@ -8,20 +8,34 @@ export interface IKbAnnounceItOptions {
   consumerSecret: string;
   accessTokenKey: string;
   accessTokenSecret: string;
+  branch: string;
+}
+
+export interface IBranchObject {
+  name: string;
+  prerelease: boolean;
+}
+
+export interface IStabilityGroups {
+  stable: string[];
+  unstable: string[];
 }
 
 export class KbAnnounceIt {
   private client: any;
+  private branchName: string;
   constructor(options: IKbAnnounceItOptions) {
 
     if (!get(options, 'consumerKey') ||
       !get(options, 'consumerSecret') ||
       !get(options, 'accessTokenKey') ||
-      !get(options, 'accessTokenSecret')) {
+      !get(options, 'accessTokenSecret') ||
+      !get(options, 'branch')) {
 
       throw new Error('ERROR: missing required options');
     }
 
+    this.branchName = options.branch;
     this.client = new Twitter({
       subdomain: 'api',
       consumer_key: options.consumerKey,
@@ -32,10 +46,29 @@ export class KbAnnounceIt {
   }
 
   announceRelease(packageDetails: IPackageDetails): Promise<string> {
-    if (
-      !packageDetails.announcements.includeUnstable &&
-      !packageDetails.version.match(/^(\d+\.)+\d+$/)
-    ) {
+    const releaseBranches: any[] = get(packageDetails, 'release.branches');
+
+    const branchesGroupedByStability: IStabilityGroups = chain(releaseBranches)
+    .groupBy((branch: string | IBranchObject) => {
+      if (isString(branch)) { return 'stable'; }
+      return branch.prerelease ? 'unstable' : 'stable';
+    })
+    .mapValues((branches: Array<string | IBranchObject>) =>
+      branches.map((branch) => isString(branch) ? branch : branch.name))
+    .defaultsDeep({
+      stable: [],
+      unstable: []
+    })
+    .value() as any;
+
+    const isIncludeUnstable = packageDetails.announcements.includeUnstable;
+    const isUnstableRelease = branchesGroupedByStability
+      .unstable.includes(this.branchName);
+    const isStableRelease = branchesGroupedByStability
+      .stable.includes(this.branchName);
+    const isNotRelease = !isUnstableRelease && !isStableRelease;
+
+    if ((!isIncludeUnstable && isUnstableRelease) || isNotRelease) {
       return Promise.reject(new Error('Not a stable release'));
     }
 

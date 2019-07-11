@@ -24,6 +24,9 @@ const packageDetails: IPackageDetails = {
   },
   announcements: {
     tweet: 'nice!'
+  },
+  release: {
+    branches: [ 'TEST' ]
   }
 };
 
@@ -32,21 +35,22 @@ describe('AnnounceItCli', () => {
 
   describe('areEnvVariablesDefined', () => {
     it('should resolve if all required environment variables exists', () => {
-      return expect(announceItCli.areEnvVariablesDefined({
+      return expect(announceItCli.areVariablesDefined({
         CONSUMER_KEY: 'CONSUMER_KEY',
         CONSUMER_SECRET: 'CONSUMER_SECRET',
         ACCESS_TOKEN_KEY: 'ACCESS_TOKEN_KEY',
-        ACCESS_TOKEN_SECRET: 'ACCESS_TOKEN_SECRET'
+        ACCESS_TOKEN_SECRET: 'ACCESS_TOKEN_SECRET',
+        branch: 'TEST'
       })).resolves.toMatchSnapshot();
     });
     it('should reject if at least 1 required environment variable is missing', () => {
-      return expect(announceItCli.areEnvVariablesDefined({
+      return expect(announceItCli.areVariablesDefined({
         CONSUMER_KEY: 'CONSUMER_KEY',
         CONSUMER_SECRET: 'CONSUMER_SECRET',
         ACCESS_TOKEN_SECRET: 'ACCESS_TOKEN_SECRET'
       }))
         .rejects.toThrowErrorMatchingSnapshot()
-        .then(() => expect(announceItCli.areEnvVariablesDefined({}))
+        .then(() => expect(announceItCli.areVariablesDefined({}))
           .rejects.toThrowErrorMatchingSnapshot());
     });
   });
