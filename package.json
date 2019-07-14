@@ -1,6 +1,6 @@
 {
   "name": "@kibibit/announce-it",
-  "version": "1.1.0-next.5",
+  "version": "1.1.0-next.6",
   "description": "Announcing your Releases",
   "types": "lib/index.d.ts",
   "main": "lib/index.js",
@@ -58,7 +58,9 @@
       "@semantic-release/npm",
       {
         "path": "@semantic-release/git",
-        "assets": ["package.json"],
+        "assets": [
+          "package.json"
+        ],
         "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
       }
     ],
