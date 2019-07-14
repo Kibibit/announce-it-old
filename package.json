@@ -46,12 +46,6 @@
       }
     ],
     "plugins": [
-      [
-        "@semantic-release/exec",
-        {
-          "success": "npm run start -- --branch ${options.branch}"
-        }
-      ],
       "@semantic-release/release-notes-generator",
       "@semantic-release/github",
       "@semantic-release/npm",
