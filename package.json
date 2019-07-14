@@ -22,7 +22,8 @@
     "start:dev": "ts-node ./src/announce-it-cli.ts",
     "start": "node ./bin/announce-it-cli.js",
     "test:watch": "jest --watchAll --coverage",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "announce": "npm start"
   },
   "repository": {
     "type": "git",
