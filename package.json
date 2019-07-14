@@ -22,8 +22,7 @@
     "start:dev": "ts-node ./src/announce-it-cli.ts",
     "start": "node ./bin/announce-it-cli.js",
     "test:watch": "jest --watchAll --coverage",
-    "test": "jest --coverage",
-    "announce": "npm start"
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -74,7 +73,7 @@
       [
         "@semantic-release/exec",
         {
-          "successCmd": "npm run announce -- --branch ${options.branch}"
+          "successCmd": "npm start -- --branch ${options.branch}"
         }
       ]
     ],
