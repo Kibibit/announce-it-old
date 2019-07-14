@@ -71,9 +71,8 @@
     "success": [
       "@semantic-release/github",
       [
-        "@semantic-release/exec",
-        {
-          "success": "npm run announce -- --branch ${options.branch}"
+        "@semantic-release/exec", {
+          "successCmd": "npm run announce -- --branch ${options.branch}"
         }
       ]
     ],
