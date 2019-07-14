@@ -46,6 +46,12 @@
       }
     ],
     "plugins": [
+      [
+        "@semantic-release/exec",
+        {
+          "success": "npm run start -- --branch ${options.branch}"
+        }
+      ],
       "@semantic-release/release-notes-generator",
       "@semantic-release/github",
       "@semantic-release/npm",
@@ -56,12 +62,6 @@
             "package.json"
           ],
           "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-        }
-      ],
-      [
-        "@semantic-release/exec",
-        {
-          "success": "npm run start -- --branch ${options.branch}"
         }
       ]
     ]
