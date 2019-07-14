@@ -12,7 +12,7 @@
   <a href="https://travis-ci.org/Kibibit/announce-it">
   <img src="https://travis-ci.org/Kibibit/announce-it.svg?branch=master">
   </a>
-  <a href="https://coveralls.io/github/Kibibit/announce-itbranch=master">
+  <a href="https://coveralls.io/github/Kibibit/announce-it?branch=master">
   <img src="https://coveralls.io/repos/github/Kibibit/announce-it/badge.svg?branch=master">
   </a>
   <a href="http://greenkeeper.io">
