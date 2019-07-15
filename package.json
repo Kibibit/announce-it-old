@@ -73,7 +73,7 @@
       [
         "@semantic-release/exec",
         {
-          "successCmd": "npm start -- --branch ${options.branch}"
+          "successCmd": "npm start -- --branch ${nextRelease.version}"
         }
       ]
     ],
