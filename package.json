@@ -1,14 +1,15 @@
 {
   "name": "@kibibit/announce-it",
-  "version": "1.1.0-next.3",
+  "version": "1.1.0-next.12",
   "description": "Announcing your Releases",
   "types": "lib/index.d.ts",
   "main": "lib/index.js",
   "files": [
-    "/lib"
+    "/lib",
+    "/bin"
   ],
   "bin": {
-    "announce-it": "lib/announce-it-cli.js"
+    "announce-it": "bin/announce-it-cli.js"
   },
   "scripts": {
     "build": "tsc",
@@ -18,8 +19,8 @@
     "lint:fix": "tslint -c tslint.json --fix src/**/*.ts",
     "lint": "tslint -c tslint.json src/**/*.ts",
     "semantic-release": "semantic-release",
-    "start:dev": "ts-node -r dotenv/config ./src/announce-it-cli.ts",
-    "start": "node ./lib/announce-it-cli",
+    "start:dev": "ts-node ./src/announce-it-cli.ts",
+    "start": "node ./bin/announce-it-cli.js",
     "test:watch": "jest --watchAll --coverage",
     "test": "jest --coverage"
   },
@@ -34,7 +35,7 @@
   },
   "homepage": "https://github.com/Kibibit/announce-it#readme",
   "announcements": {
-    "tweet": "Version <%= version %> of <%= package %> is live! check it out <%=homepage %>"
+    "tweet": "We have an announcement!\n<%= package %> <%= version %> in now live!\n\nGo check it out: <%= npmpage %>"
   },
   "release": {
     "branches": [
@@ -44,23 +45,45 @@
         "prerelease": true
       }
     ],
-    "plugins": [
-      "@semantic-release/release-notes-generator",
-      "@semantic-release/github",
+    "npmPublish": true,
+    "analyzeCommits": [
+      "@semantic-release/commit-analyzer"
+    ],
+    "verifyConditions": [
       "@semantic-release/npm",
+      "@semantic-release/git",
+      "@semantic-release/github"
+    ],
+    "prepare": [
+      "@semantic-release/npm",
+      {
+        "path": "@semantic-release/git",
+        "assets": [
+          "package.json"
+        ],
+        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+      }
+    ],
+    "publish": [
+      "@semantic-release/npm",
+      "@semantic-release/github"
+    ],
+    "success": [
+      "@semantic-release/github",
       [
-        "@semantic-release/git",
+        "@semantic-release/exec",
         {
-          "assets": [
-            "package.json"
-          ],
-          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+          "successCmd": "npm start -- --branch $TRAVIS_BRANCH"
         }
       ]
+    ],
+    "fail": [
+      "@semantic-release/github"
     ]
   },
   "devDependencies": {
     "@semantic-release/commit-analyzer": "^6.1.0",
+    "@semantic-release/exec": "^3.4.0-beta.2",
     "@semantic-release/git": "^7.1.0-beta.3",
     "@semantic-release/github": "^5.2.10",
     "@semantic-release/npm": "^5.1.4",
@@ -70,12 +93,13 @@
     "@types/fs-extra": "^8.0.0",
     "@types/jest": "^24.0.11",
     "@types/lodash": "^4.14.123",
+    "@types/nconf": "^0.10.0",
     "all-contributors-cli": "^6.2.0",
     "coveralls": "^3.0.3",
     "jest": "^24.5.0",
     "jest-stare": "^1.13.2",
     "npm-check": "^5.9.0",
-    "semantic-release": "^16.0.0-beta.18",
+    "semantic-release": "^16.0.0-beta.22",
     "semantic-release-cli": "^5.0.0",
     "ts-jest": "^24.0.1",
     "ts-node": "^8.0.3",
@@ -88,6 +112,7 @@
     "fs-extra": "^8.0.1",
     "lodash": "^4.17.11",
     "manakin": "^0.5.2",
+    "nconf": "^0.10.0",
     "twitter-lite": "^0.9.4"
   },
   "jest-stare": {

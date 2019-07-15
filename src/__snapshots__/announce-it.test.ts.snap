@@ -2,6 +2,7 @@
 
 exports[`KbAnnounceIt should create instance when given correct parameters 1`] = `
 KbAnnounceIt {
+  "branchName": "TEST",
   "client": Object {
     "get": [Function],
     "post": [Function],
@@ -22,6 +23,10 @@ exports[`KbAnnounceIt should throw error when missing options 5`] = `"ERROR: mis
 exports[`kbAnnounceIt.announceRelease should post to twitter when stable release 1`] = `"test-template"`;
 
 exports[`kbAnnounceIt.announceRelease should post to twitter when unstable release and mentioned in packageDetails 1`] = `"test-template"`;
+
+exports[`kbAnnounceIt.announceRelease should post to twitter when unstable release and mentioned in packageDetails as stable 1`] = `"test-template"`;
+
+exports[`kbAnnounceIt.announceRelease should throw an error when unstable release and mentioned in packageDetails as unstable 1`] = `"Not a stable release"`;
 
 exports[`kbAnnounceIt.announceRelease should throw an error when unstable release and not mentioned in packageDetails 1`] = `"Not a stable release"`;
 

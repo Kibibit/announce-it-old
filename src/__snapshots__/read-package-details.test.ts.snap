@@ -9,6 +9,11 @@ Object {
   "description": "package description",
   "homepage": "pizza.com",
   "name": "package-name",
+  "release": Object {
+    "branches": Array [
+      "TEST",
+    ],
+  },
   "repository": Object {
     "type": "",
     "url": "",
