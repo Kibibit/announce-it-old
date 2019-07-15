@@ -71,9 +71,8 @@
     "success": [
       "@semantic-release/github",
       [
-        "@semantic-release/exec",
-        {
-          "successCmd": "npm start -- --branch ${nextRelease.version}"
+        "@semantic-release/exec", {
+          "successCmd": "npm start -- --branch $TRAVIS_BRANCH"
         }
       ]
     ],
