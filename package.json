@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/Kibibit/announce-it#readme",
   "announcements": {
-    "tweet": "We have an announcement!\n<%= package %> <%= version %> in now live!\n\nGo check it out: <%= npmpage %>"
+    "tweet": "We have an announcement!\n<%= package %> <%= version %> is now live!\n\nGo check it out: <%= npmpage %>"
   },
   "release": {
     "branches": [
