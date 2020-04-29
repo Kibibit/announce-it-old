@@ -113,7 +113,7 @@
     "lodash": "^4.17.11",
     "manakin": "^0.5.2",
     "nconf": "^0.10.0",
-    "twitter-lite": "^0.9.4"
+    "twitter-lite": "^0.11.0"
   },
   "jest-stare": {
     "resultDir": "test-results/",
