@@ -22,7 +22,8 @@
     "start:dev": "ts-node ./src/announce-it-cli.ts",
     "start": "node ./bin/announce-it-cli.js",
     "test:watch": "jest --watchAll --coverage",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "start:ci": "npm start -- --branch master"
   },
   "repository": {
     "type": "git",
@@ -44,41 +45,6 @@
         "name": "next",
         "prerelease": true
       }
-    ],
-    "npmPublish": true,
-    "analyzeCommits": [
-      "@semantic-release/commit-analyzer"
-    ],
-    "verifyConditions": [
-      "@semantic-release/npm",
-      "@semantic-release/git",
-      "@semantic-release/github"
-    ],
-    "prepare": [
-      "@semantic-release/npm",
-      {
-        "path": "@semantic-release/git",
-        "assets": [
-          "package.json"
-        ],
-        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-      }
-    ],
-    "publish": [
-      "@semantic-release/npm",
-      "@semantic-release/github"
-    ],
-    "success": [
-      "@semantic-release/github",
-      [
-        "@semantic-release/exec",
-        {
-          "successCmd": "npm start -- --branch $TRAVIS_BRANCH"
-        }
-      ]
-    ],
-    "fail": [
-      "@semantic-release/github"
     ]
   },
   "devDependencies": {
