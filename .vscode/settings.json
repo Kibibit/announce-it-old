@@ -1,0 +1,51 @@
+{
+    "workbench.colorCustomizations": {
+      "activityBar.activeBackground": "#ffbe72",
+      "activityBar.activeBorder": "#009f56",
+      "activityBar.background": "#ffbe72",
+      "activityBar.foreground": "#15202b",
+      "activityBar.inactiveForeground": "#15202b99",
+      "activityBarBadge.background": "#009f56",
+      "activityBarBadge.foreground": "#e7e7e7",
+      "statusBar.background": "#ffa63f",
+      "statusBar.foreground": "#15202b",
+      "statusBarItem.hoverBackground": "#ff8e0c",
+      "titleBar.activeBackground": "#ffa63f",
+      "titleBar.activeForeground": "#15202b",
+      "titleBar.inactiveBackground": "#ffa63f99",
+      "titleBar.inactiveForeground": "#15202b99"
+    },
+    "peacock.color": "#ffa63f",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "editor.rulers": [80],
+    "editor.fontFamily": "Hack, Menlo, Monaco, 'Courier New', monospace",
+    "editor.matchBrackets": "always",
+    // Terminal
+    "terminal.integrated.fontFamily": "Hack, Menlo, Monaco, 'Courier New', monospace",
+    "terminal.integrated.fontSize": 14,
+    // Workbench
+    "workbench.colorTheme": "Andromeda",
+    "workbench.editor.showIcons": true,
+    "workbench.iconTheme": "vs-seti",
+    // Bracket Pair Colorizer
+    "bracketPairColorizer.colorMode": "Consecutive",
+    "bracketPairColorizer.forceUniqueOpeningColor": true,
+    "bracketPairColorizer.showBracketsInGutter": true,
+    "window.title": "${activeEditorShort}${separator}${rootName} [kibibit]",
+    "typescriptHero.imports.stringQuoteStyle": "'",
+    "typescriptHero.imports.grouping": [
+      "Plains",
+      "Modules",
+      "/^@kibibit/",
+      "/^@kb-/",
+      "Workspace"
+  
+    ],
+    "typescriptHero.imports.organizeOnSave": true,
+    "typescriptHero.imports.multiLineTrailingComma": false,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    }
+}
