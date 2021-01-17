@@ -1,7 +1,7 @@
 {
   "name": "@kibibit/announce-it",
   "version": "2.0.0-next.2",
-  "description": "Announcing your Releases",
+  "description": "Announcing your Releases To Twitter",
   "types": "lib/index.d.ts",
   "main": "lib/index.js",
   "files": [
