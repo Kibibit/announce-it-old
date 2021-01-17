@@ -54,10 +54,10 @@ You have to create a [Developer Account on Twitter](https://developer.twitter.co
 - You need to pass the following parameters by either ENV parameters or
   calling the cli with these as cli params:
 
-  * `CONSUMER_KEY` = API key
-  * `CONSUMER_SECRET` = API secret key
-  * `ACCESS_TOKEN_KEY` = Access token
-  * `ACCESS_TOKEN_SECRET` = Access token secret
+  * `TWITTER_CONSUMER_KEY` = API key
+  * `TWITTER_CONSUMER_SECRET` = API secret key
+  * `TWITTER_ACCESS_TOKEN_KEY` = Access token
+  * `TWITTER_ACCESS_TOKEN_SECRET` = Access token secret
   * `branch` = the current branch
 
   As CLI params:
