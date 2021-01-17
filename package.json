@@ -38,15 +38,6 @@
   "announcements": {
     "tweet": "We have an announcement!\n<%= package %> <%= version %> is now live!\n\nGo check it out: <%= npmpage %>"
   },
-  "release": {
-    "branches": [
-      "master",
-      {
-        "name": "next",
-        "prerelease": true
-      }
-    ]
-  },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-angular": "^11.0.0",
