@@ -22,25 +22,23 @@ const packageDetails: IPackageDetails = {
 };
 
 jest.mock('fs-extra');
+const fsMocked = fs as jest.Mocked<any>;
 
 describe('readPackageDetails', () => {
   it('should return the package details', () => {
-    // @ts-ignore
-    fs.readJson.mockResolvedValue(packageDetails);
+    fsMocked.readJson.mockResolvedValue(packageDetails);
     return expect(readPackageDetails('rootFolder')).resolves.toMatchSnapshot();
   });
 
   it('should throw error if reading package.json failed', () => {
-    // @ts-ignore
-    fs.readJson.mockRejectedValue(new Error('failed reading json file'));
+    fsMocked.readJson.mockRejectedValue(new Error('failed reading json file'));
     return expect(readPackageDetails('rootFolder')).rejects.toThrowErrorMatchingSnapshot();
   });
 
   it('should throw error if missing tweet from package.json', () => {
     const missingDetails: Partial<IPackageDetails> = assign({}, packageDetails);
     missingDetails.announcements = undefined;
-    // @ts-ignore
-    fs.readJson.mockResolvedValue(missingDetails);
+    fsMocked.readJson.mockResolvedValue(missingDetails);
 
     return expect(readPackageDetails('rootFolder')).rejects.toThrowErrorMatchingSnapshot();
   });

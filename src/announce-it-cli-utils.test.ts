@@ -1,8 +1,4 @@
-import fs from 'fs-extra';
-import { assign } from 'lodash';
-
 import { AnnounceItCli } from './announce-it-cli-utils';
-import { IPackageDetails } from './read-package-details';
 
 jest.mock('find-root', () => (folder: string) => {
   if (folder === 'test-failure') {
@@ -11,24 +7,6 @@ jest.mock('find-root', () => (folder: string) => {
 
   return 'project-root';
 });
-
-const packageDetails: IPackageDetails = {
-  name: 'package-name',
-  description: 'package description',
-  version: '1.0.0',
-  author: 'test@test.com',
-  homepage: 'pizza.com',
-  repository: {
-    type: '',
-    url: ''
-  },
-  announcements: {
-    tweet: 'nice!'
-  },
-  release: {
-    branches: [ 'TEST' ]
-  }
-};
 
 describe('AnnounceItCli', () => {
   const announceItCli = new AnnounceItCli();

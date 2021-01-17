@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { assign, cloneDeep } from 'lodash';
 
 import { KbAnnounceIt } from './announce-it';
 import { IPackageDetails } from './read-package-details';
 
 const TwitterMocks = () => {
-  const defaultMock = (...args: any) => Promise.resolve();
+  const defaultMock = () => Promise.resolve();
 
   let getMock = defaultMock;
   let postMock = defaultMock;
@@ -168,7 +169,7 @@ describe('kbAnnounceIt.announceRelease', () => {
   });
 
   it('should throw error when twitter get credentials throws an error', async () => {
-    twitterMocks.reset({ get: (...args: any) => Promise.reject(new Error('Twitter Get Error')) });
+    twitterMocks.reset({ get: () => Promise.reject(new Error('Twitter Get Error')) });
 
     // TODO: FEATURE: create a basic KbError class
     return expect(announceIt.announceRelease(packageDetails)).rejects
@@ -179,8 +180,8 @@ describe('kbAnnounceIt.announceRelease', () => {
     expect.assertions(1);
 
     twitterMocks.reset({
-      post: (...args: any) => Promise.reject(new Error('Twitter Post Error')),
-      get: (...args: any) => Promise.resolve()
+      post: () => Promise.reject(new Error('Twitter Post Error')),
+      get: () => Promise.resolve()
     });
 
     return expect(announceIt.announceRelease(packageDetails)).rejects
