@@ -11,6 +11,7 @@ module.exports = {
   watchPathIgnorePatterns: [
     ".*test-results.*\\.js"
   ],
-  reporters: ["default", "jest-stare"],
-  testResultsProcessor: "./node_modules/jest-stare"
+  reporters: ["default", "jest-stare", "jest-github-actions-reporter"],
+  testResultsProcessor: "./node_modules/jest-stare",
+  "testLocationInResults": true
 };
