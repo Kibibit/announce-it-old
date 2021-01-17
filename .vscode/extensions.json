@@ -1,5 +1,6 @@
 {
   "recommendations": [
-    "rbbit.typescript-hero"
+    "rbbit.typescript-hero",
+    "orta.vscode-jest"
   ]
 }
