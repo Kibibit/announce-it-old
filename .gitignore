@@ -1,6 +1,3 @@
-# Version locking disable
-package-lock.json
-
 # Dist files
 lib/
 

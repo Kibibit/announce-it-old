@@ -1,8 +1,4 @@
-import fs from 'fs-extra';
-import { assign } from 'lodash';
-
 import { AnnounceItCli } from './announce-it-cli-utils';
-import { IPackageDetails } from './read-package-details';
 
 jest.mock('find-root', () => (folder: string) => {
   if (folder === 'test-failure') {
@@ -12,42 +8,24 @@ jest.mock('find-root', () => (folder: string) => {
   return 'project-root';
 });
 
-const packageDetails: IPackageDetails = {
-  name: 'package-name',
-  description: 'package description',
-  version: '1.0.0',
-  author: 'test@test.com',
-  homepage: 'pizza.com',
-  repository: {
-    type: '',
-    url: ''
-  },
-  announcements: {
-    tweet: 'nice!'
-  },
-  release: {
-    branches: [ 'TEST' ]
-  }
-};
-
 describe('AnnounceItCli', () => {
   const announceItCli = new AnnounceItCli();
 
   describe('areVariablesDefined', () => {
     it('should resolve if all required variables exists', () => {
       return expect(announceItCli.areVariablesDefined({
-        CONSUMER_KEY: 'CONSUMER_KEY',
-        CONSUMER_SECRET: 'CONSUMER_SECRET',
-        ACCESS_TOKEN_KEY: 'ACCESS_TOKEN_KEY',
-        ACCESS_TOKEN_SECRET: 'ACCESS_TOKEN_SECRET',
+        TWITTER_CONSUMER_KEY: 'TWITTER_CONSUMER_KEY',
+        TWITTER_CONSUMER_SECRET: 'TWITTER_CONSUMER_SECRET',
+        TWITTER_ACCESS_TOKEN_KEY: 'TWITTER_ACCESS_TOKEN_KEY',
+        TWITTER_ACCESS_TOKEN_SECRET: 'TWITTER_ACCESS_TOKEN_SECRET',
         branch: 'TEST'
       })).resolves.toMatchSnapshot();
     });
     it('should reject if at least 1 required variable is missing', () => {
       return expect(announceItCli.areVariablesDefined({
-        CONSUMER_KEY: 'CONSUMER_KEY',
-        CONSUMER_SECRET: 'CONSUMER_SECRET',
-        ACCESS_TOKEN_SECRET: 'ACCESS_TOKEN_SECRET'
+        TWITTER_CONSUMER_KEY: 'TWITTER_CONSUMER_KEY',
+        TWITTER_CONSUMER_SECRET: 'TWITTER_CONSUMER_SECRET',
+        TWITTER_ACCESS_TOKEN_SECRET: 'TWITTER_ACCESS_TOKEN_SECRET'
       }))
         .rejects.toThrowErrorMatchingSnapshot()
         .then(() => expect(announceItCli.areVariablesDefined({}))

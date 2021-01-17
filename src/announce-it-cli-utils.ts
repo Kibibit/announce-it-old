@@ -7,10 +7,10 @@ import { readPackageDetails } from './read-package-details';
 export class AnnounceItCli {
   areVariablesDefined(env: NodeJS.ProcessEnv): Promise<void> {
     const variables = [
-      'CONSUMER_KEY',
-      'CONSUMER_SECRET',
-      'ACCESS_TOKEN_KEY',
-      'ACCESS_TOKEN_SECRET',
+      'TWITTER_CONSUMER_KEY',
+      'TWITTER_CONSUMER_SECRET',
+      'TWITTER_ACCESS_TOKEN_KEY',
+      'TWITTER_ACCESS_TOKEN_SECRET',
       'branch'
     ];
 
@@ -44,10 +44,10 @@ export class AnnounceItCli {
       .then((root) => readPackageDetails(root))
       .then((packageDetails) => {
         const announceIt = new KbAnnounceIt({
-          consumerKey: env.CONSUMER_KEY as string,
-          consumerSecret: env.CONSUMER_SECRET as string,
-          accessTokenKey: env.ACCESS_TOKEN_KEY as string,
-          accessTokenSecret: env.ACCESS_TOKEN_SECRET as string,
+          consumerKey: env.TWITTER_CONSUMER_KEY as string,
+          consumerSecret: env.TWITTER_CONSUMER_SECRET as string,
+          accessTokenKey: env.TWITTER_ACCESS_TOKEN_KEY as string,
+          accessTokenSecret: env.TWITTER_ACCESS_TOKEN_SECRET as string,
           branch: env.branch as string
         });
 

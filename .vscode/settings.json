@@ -1,0 +1,27 @@
+{
+    "peacock.color": "#ffa63f",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "editor.rulers": [80],
+    "editor.matchBrackets": "always",
+    // Bracket Pair Colorizer
+    "bracketPairColorizer.colorMode": "Consecutive",
+    "bracketPairColorizer.forceUniqueOpeningColor": true,
+    "bracketPairColorizer.showBracketsInGutter": true,
+    "window.title": "${activeEditorShort}${separator}${rootName} [kibibit]",
+    "typescriptHero.imports.stringQuoteStyle": "'",
+    "typescriptHero.imports.grouping": [
+      "Plains",
+      "Modules",
+      "/^@kibibit/",
+      "/^@kb-/",
+      "Workspace"
+  
+    ],
+    "typescriptHero.imports.organizeOnSave": true,
+    "typescriptHero.imports.multiLineTrailingComma": false,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    }
+}
