@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/Kibibit/announce-it" target="blank"><img src="http://kibibit.io/kibibit-assets/announce-it.svg" width="150" ></a>
+  <a href="https://github.com/Kibibit/announce-it" target="blank"><img src="https://kibibit.io/kibibit-assets/announce-it.svg" width="150" ></a>
   <h2 align="center">
     @kibibit/announce-it
   </h2>
@@ -51,6 +51,21 @@ You have to create a [Developer Account on Twitter](https://developer.twitter.co
 
 
 ### As a command line tool
+- You need to pass the following parameters by either ENV parameters or
+  calling the cli with these as cli params:
+
+  * `TWITTER_CONSUMER_KEY` = API key
+  * `TWITTER_CONSUMER_SECRET` = API secret key
+  * `TWITTER_ACCESS_TOKEN_KEY` = Access token
+  * `TWITTER_ACCESS_TOKEN_SECRET` = Access token secret
+  * `branch` = the current branch
+
+  As CLI params:
+  ```bash
+  ./node_modules/.bin/announce-it --CONSUMER_KEY <key> --CONSUMER_SECRET <secret> --ACCESS_TOKEN_KEY <key> --ACCESS_TOKEN_SECRET <secret> --branch <branchName>
+  ```
+  Both ENV parameters and the CLI arguments have the same names. If a parameter is found in both places, the CLI argument will be used.
+
 - You can add a dedicated script in your `package.json` file:
   ```js
   // ...
@@ -61,16 +76,22 @@ You have to create a [Developer Account on Twitter](https://developer.twitter.co
   // ...
   ```
 - If executed with @semanic-release/exec:
+  > because of a current issue with `@semantic-release/exec`, you need
+to pass the current branch directly
   ```js
-  // ...
-  "plugins": 
+  "release": {
+    "branches": [ /* ... */ ]
     // ...
-    [
-      "@semantic-release/exec",
-      {
-        "success": "npm run announce -- --branch ${options.branch}"
-      }
-    ]
+    "success": [
+      "@semantic-release/github",
+      [
+        "@semantic-release/exec",
+        {
+          "successCmd": "npm start -- --branch $TRAVIS_BRANCH"
+        }
+      ]
+    ],
+  }
     // ...
   // ...
   ```
@@ -110,13 +131,6 @@ console.log('going to tweet: ', tweet);
 announceIt.announceRelease(myPackage);
 
 ```
-
-  * Use these Token as environment variables in this fashion:
-  * `CONSUMER_KEY` = API key
-  * `CONSUMER_SECRET` = API secret key
-  * `ACCESS_TOKEN_KEY` = Access token
-  * `ACCESS_TOKEN_SECRET` = Access token secret
-
 
 ### Defining your Templates
 Inside your `package.json` file, add an `announcements` object with `tweet` property.
