@@ -1,6 +1,8 @@
 {
   "recommendations": [
     "rbbit.typescript-hero",
-    "orta.vscode-jest"
+    "orta.vscode-jest",
+    "johnpapa.vscode-peacock",
+    "coenraads.bracket-pair-colorizer"
   ]
 }
